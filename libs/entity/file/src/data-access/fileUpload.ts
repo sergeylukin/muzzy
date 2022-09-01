@@ -1,7 +1,4 @@
-import {
-  IFileUploadApiResponse,
-  FILE_UPLOAD_API_URL,
-} from '@muzzy/shared/api-interface';
+import { IFileUploadApiResponse, FILE_UPLOAD_API_URL } from '../';
 import { environment } from '@muzzy/shared/environments';
 
 export const fileUpload = (file: File): Promise<IFileUploadApiResponse> => {

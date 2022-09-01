@@ -3,7 +3,7 @@ import { client } from '../client';
 import * as bodyParser from 'body-parser';
 
 import { environment } from '@muzzy/shared/environments';
-import { IFileUploadApiResponse } from '@muzzy/shared/api-interface';
+import { IFileUploadApiResponse } from '@muzzy/file';
 
 const app = express();
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { fileUpload } from '@muzzy/file';
-import { IFileUploadApiResponse } from '@muzzy/shared/api-interface';
+import { fileUpload, IFileUploadApiResponse } from '../';
 
 export function useFileUpload() {
   const inputRef = React.useRef<HTMLInputElement>(null);
