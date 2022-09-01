@@ -8,7 +8,8 @@
     "serve:web": "nx run front:serve",
     "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\"",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "e2e": "nx run front-e2e:e2e"
   },
   "private": true,
   "dependencies": {

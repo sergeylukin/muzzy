@@ -17,3 +17,17 @@ Web app + API
 ```
 npm start
 ```
+
+## run tests
+
+React components unit tests:
+
+```
+npm test
+```
+
+Cypress powered UI interactivity (mainly dropzone) testing:
+
+```
+npm run e2e
+```

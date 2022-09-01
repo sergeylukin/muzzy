@@ -7,10 +7,11 @@ const StyledFrontFeatureUploadZone = styled.div`
 `;
 
 export function FrontFeatureUploadZone() {
-  const { inputRef, onUpload, apiResponse } = useFileUpload();
+  const { inputRef, dropzoneRef, onUpload, apiResponse } = useFileUpload();
   return (
-    <StyledFrontFeatureUploadZone>
-      <h1>API response {apiResponse.url}</h1>
+    <StyledFrontFeatureUploadZone id="muzzy-dropzone" ref={dropzoneRef}>
+      <h1>upload a meme</h1>
+      <h2>Response: {apiResponse.url}</h2>
       <div>
         <form
           onSubmit={(e) => {
@@ -19,7 +20,9 @@ export function FrontFeatureUploadZone() {
           }}
         >
           <input type="file" ref={inputRef} />
-          <button type="submit">Upload!</button>
+          <button id="muzzy-upload-button" type="submit">
+            Upload!
+          </button>
         </form>
       </div>
     </StyledFrontFeatureUploadZone>

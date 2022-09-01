@@ -5,8 +5,6 @@ import {
 import { environment } from '@muzzy/shared/environments';
 
 export const fileUpload = (file: File): Promise<IFileUploadApiResponse> => {
-  console.log('heererereer');
-  console.log(file);
   return fetch(environment.api.hostport + FILE_UPLOAD_API_URL, {
     // Your POST endpoint
     method: 'POST',
