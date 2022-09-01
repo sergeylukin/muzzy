@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "entity-file": "libs/entity/file",
     "front": "apps/front",
     "front-e2e": "apps/front-e2e",
     "front-feature-file-viewer": "libs/front/feature-file-viewer",
