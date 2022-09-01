@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { useFileUpload } from '@muzzy/file/hooks';
+import { useFileUpload } from '@muzzy/file';
 
 const StyledFrontFeatureUploadZone = styled.div`
   color: pink;

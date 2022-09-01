@@ -1,28 +1,7 @@
 import * as React from 'react';
 
-import { fileUpload } from '@muzzy/file/data-access';
+import { fileUpload } from '@muzzy/file';
 import { IFileUploadApiResponse } from '@muzzy/shared/api-interface';
-
-export const getFilesFromEvent = (
-  event: React.DragEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>
-): Array<File | DataTransferItem> => {
-  let items = null;
-
-  if ('dataTransfer' in event) {
-    const dt = event.dataTransfer;
-
-    // NOTE: Only the 'drop' event has access to DataTransfer.files, otherwise it will always be empty
-    if ('files' in dt && dt.files.length) {
-      items = dt.files;
-    } else if (dt.items && dt.items.length) {
-      items = dt.items;
-    }
-  } else if (event.target && event.target.files) {
-    items = event.target.files;
-  }
-
-  return Array.prototype.slice.call(items);
-};
 
 export function useFileUpload() {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -62,3 +41,24 @@ export function useFileUpload() {
     apiResponse,
   };
 }
+
+const getFilesFromEvent = (
+  event: React.DragEvent<HTMLElement> | React.ChangeEvent<HTMLInputElement>
+): Array<File | DataTransferItem> => {
+  let items = null;
+
+  if ('dataTransfer' in event) {
+    const dt = event.dataTransfer;
+
+    // NOTE: Only the 'drop' event has access to DataTransfer.files, otherwise it will always be empty
+    if ('files' in dt && dt.files.length) {
+      items = dt.files;
+    } else if (dt.items && dt.items.length) {
+      items = dt.items;
+    }
+  } else if (event.target && event.target.files) {
+    items = event.target.files;
+  }
+
+  return Array.prototype.slice.call(items);
+};

@@ -4,8 +4,6 @@
   "projects": {
     "api": "apps/api",
     "entity-file": "libs/entity/file",
-    "entity-file-data-access": "libs/entity/file/data-access",
-    "entity-file-hooks": "libs/entity/file/hooks",
     "front": "apps/front",
     "front-e2e": "apps/front-e2e",
     "front-feature-file-viewer": "libs/front/feature-file-viewer",
