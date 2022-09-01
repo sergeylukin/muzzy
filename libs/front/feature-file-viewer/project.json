@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/front/feature-file-viewer/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/front/feature-file-viewer/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/front/feature-file-viewer"],
+      "options": {
+        "jestConfig": "libs/front/feature-file-viewer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

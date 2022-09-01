@@ -4,6 +4,7 @@
   "projects": {
     "front": "apps/front",
     "front-e2e": "apps/front-e2e",
+    "front-feature-file-viewer": "libs/front/feature-file-viewer",
     "front-feature-upload-zone": "libs/front/feature-upload-zone"
   }
 }
