@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "front": "apps/front",
-    "front-e2e": "apps/front-e2e"
+    "front-e2e": "apps/front-e2e",
+    "front-feature-upload-zone": "libs/front/feature-upload-zone"
   }
 }

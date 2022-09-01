@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@muzzy/front/feature-upload-zone": [
+        "libs/front/feature-upload-zone/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
