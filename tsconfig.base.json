@@ -21,7 +21,8 @@
       "@muzzy/front/feature-upload-zone": [
         "libs/front/feature-upload-zone/src/index.ts"
       ],
-      "@muzzy/shared/api-interface": ["libs/shared/api-interface/src/index.ts"]
+      "@muzzy/shared/api-interface": ["libs/shared/api-interface/src/index.ts"],
+      "@muzzy/shared/environments": ["libs/shared/environments/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
