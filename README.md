@@ -6,4 +6,14 @@ muzzy (combination of "meme" and "buzzy") - your favorite meme sharing web app.
 
 ## how to contribute
 
-for now it's WIP, stay tuned.
+Start up redis
+
+```
+docker-compose up
+```
+
+Web app + API
+
+```
+npm start
+```

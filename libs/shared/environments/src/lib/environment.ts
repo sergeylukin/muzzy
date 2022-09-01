@@ -13,4 +13,7 @@ export const environment = {
     port: 4200,
     hostport: 'http://localhost:4200',
   },
+  redis: {
+    url: 'redis://:yYTX9EwVmmxKPCDmwMtyKVge8oLd2u81@localhost:6379',
+  },
 };

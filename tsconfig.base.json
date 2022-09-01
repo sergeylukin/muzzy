@@ -17,6 +17,7 @@
     "paths": {
       "@muzzy/file": ["libs/entity/file/src/index.ts"],
       "@muzzy/file/data-access": ["libs/entity/file/data-access/src/index.ts"],
+      "@muzzy/file/hooks": ["libs/entity/file/hooks/src/index.ts"],
       "@muzzy/front/feature-file-viewer": [
         "libs/front/feature-file-viewer/src/index.ts"
       ],
