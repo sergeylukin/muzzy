@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
+    "start": "npm run serve:all",
+    "serve:api": "nx serve api",
+    "serve:web": "nx run front:serve",
+    "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\"",
     "build": "nx build",
     "test": "nx test"
   },
@@ -41,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "~5.33.1",
     "@typescript-eslint/parser": "~5.33.1",
     "babel-jest": "28.1.1",
+    "concurrently": "^7.3.0",
     "cypress": "^10.2.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
