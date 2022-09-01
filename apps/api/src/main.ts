@@ -5,11 +5,12 @@
 
 import * as express from 'express';
 
+import { router as fileRouter } from './app/routers/file';
+import { FILE_UPLOAD_API_URL } from '@muzzy/shared/api-interface';
+
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api!' });
-});
+app.use(FILE_UPLOAD_API_URL, fileRouter);
 
 const port = process.env.port || 3333;
 const server = app.listen(port, () => {
