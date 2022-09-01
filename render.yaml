@@ -1,0 +1,56 @@
+previewsEnabled: true
+previewsExpireAfterDays: 1
+services:
+  - type: web
+    name: muzzy-api
+    env: docker
+    plan: starter
+    domains:
+      - muzzy-api.sergeylukin.com
+    dockerfilePath: ./apps/api/Dockerfile
+    repo: 'https://github.com/sergeylukin/muzzy'
+    dockerCommand: ./apps/api/entrypoint.sh
+    healthCheckPath: /v1/
+    numInstances: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: muzzy-redis
+          property: connectionString
+      - key: FRONT_HOST
+        fromService:
+          type: web
+          name: muzzy-app
+          property: host
+  - type: web
+    name: muzzy-app
+    env: static
+    domains:
+      - muzzy.sergeylukin.com
+    buildCommand: npm run build:web
+    staticPublishPath: ./dist/apps/front
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 14.17.5
+      - key: API_HOST
+        fromService:
+          type: web
+          name: muzzy-api
+          property: host
+  - type: redis
+    name: muzzy-redis
+    ipAllowList: # required
+      - source: 0.0.0.0/0
+        description: everywhere
+    plan: starter
+    # Evict using approximated LRU, only keys with an expire set.
+    maxmemoryPolicy: volatile-lru

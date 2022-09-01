@@ -19,6 +19,9 @@ app.use(
 );
 
 app.use(FILE_UPLOAD_API_URL, fileRouter);
+app.use('/v1', (_req, res) => {
+  res.send({ message: 'its working' });
+});
 
 const port = environment.api.port || 3333;
 const server = app.listen(port, () => {
