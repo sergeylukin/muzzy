@@ -4,6 +4,7 @@ import {
   IFileUploadApiResponse,
   FILE_UPLOAD_API_URL,
 } from '@muzzy/shared/api-interface';
+import { environment } from '@muzzy/shared/environments';
 
 const StyledFrontFeatureUploadZone = styled.div`
   color: pink;
@@ -14,7 +15,7 @@ export function FrontFeatureUploadZone() {
     url: '',
   });
   React.useEffect(() => {
-    fetch(FILE_UPLOAD_API_URL)
+    fetch(environment.api.hostport + FILE_UPLOAD_API_URL)
       .then((r) => r.json())
       .then(setApiResponse);
   }, []);
