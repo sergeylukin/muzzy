@@ -9,6 +9,7 @@
     "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\"",
     "build": "npx nx build",
     "build:web": "npx nx run front:build:production",
+    "build:api": "npx nx run api:build:production",
     "test": "npx nx test",
     "e2e": "npx nx run front-e2e:e2e"
   },

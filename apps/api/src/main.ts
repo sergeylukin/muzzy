@@ -20,6 +20,6 @@ app.use('/health', (_req, res) => {
 
 const port = environment.api.port || 3333;
 const server = app.listen(port, () => {
-  console.log(`Listening at ${environment.api.hostport}`);
+  console.log(`Listening at ${environment.api.host}:${port}`);
 });
 server.on('error', console.error);

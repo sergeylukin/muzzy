@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "libs/shared/environments/environment.ts",
-              "with": "libs/shared/environments/environment.prod.ts"
+              "replace": "libs/shared/environments/src/lib/environment.ts",
+              "with": "libs/shared/environments/src/lib/environment.prod.ts"
             }
           ]
         }

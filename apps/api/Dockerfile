@@ -10,9 +10,9 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build api
+RUN npm run build:api
 
-FROM node:14.5.0-alpine AS production
+FROM node:14.17.5-alpine AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}

@@ -10,23 +10,25 @@ services:
     dockerfilePath: ./apps/api/Dockerfile
     repo: 'https://github.com/sergeylukin/muzzy'
     dockerCommand: ./apps/api/entrypoint.sh
-    healthCheckPath: /v1/health
+    healthCheckPath: /health
     numInstances: 1
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NX_2ND_LEVEL_DOMAIN
+        value: sergeylukin.com
       - key: REDIS_URL
         fromService:
           type: redis
           name: muzzy-redis
           property: connectionString
-      - key: FRONT_HOST
+      - key: NX_FRONT_HOST
         fromService:
           type: web
-          name: muzzy-app
+          name: muzzy
           property: host
   - type: web
-    name: muzzy-app
+    name: muzzy
     env: static
     domains:
       - muzzy.sergeylukin.com
@@ -41,7 +43,9 @@ services:
         value: production
       - key: NODE_VERSION
         value: 14.17.5
-      - key: API_HOST
+      - key: NX_2ND_LEVEL_DOMAIN
+        value: sergeylukin.com
+      - key: NX_API_HOST
         fromService:
           type: web
           name: muzzy-api
