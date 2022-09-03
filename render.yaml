@@ -10,7 +10,7 @@ services:
     dockerfilePath: ./apps/api/Dockerfile
     repo: 'https://github.com/sergeylukin/muzzy'
     dockerCommand: ./apps/api/entrypoint.sh
-    healthCheckPath: /v1/
+    healthCheckPath: /v1/health
     numInstances: 1
     envVars:
       - key: NODE_ENV

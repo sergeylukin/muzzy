@@ -1,8 +1,3 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import * as express from 'express';
 import * as cors from 'cors';
 
@@ -19,7 +14,7 @@ app.use(
 );
 
 app.use(FILE_UPLOAD_API_URL, fileRouter);
-app.use('/v1', (_req, res) => {
+app.use('/health', (_req, res) => {
   res.send({ message: 'its working' });
 });
 
