@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { redis } from '../client';
+import { redis } from '../redis';
 import * as bodyParser from 'body-parser';
 
 import { environment } from '@muzzy/shared/environments';
