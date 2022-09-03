@@ -8,6 +8,7 @@
     "front-e2e": "apps/front-e2e",
     "front-feature-file-viewer": "libs/front/feature-file-viewer",
     "front-feature-upload-zone": "libs/front/feature-upload-zone",
-    "shared-environments": "libs/shared/environments"
+    "shared-environments": "libs/shared/environments",
+    "shared-redis": "libs/shared/redis"
   }
 }
