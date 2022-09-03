@@ -1,5 +1,5 @@
 import { createClient } from 'redis';
-import { environment } from '@muzzy/shared/environments';
+import { environment } from '@muzzy/environments';
 
 const client = (uri: string) => {
   let connection = null;
@@ -14,7 +14,7 @@ const client = (uri: string) => {
         connection.on('connect', function () {
           console.log('Redis client connected');
         });
-        connection.on('error', function (err) {
+        connection.on('error', function (err: string) {
           console.log('Something went wrong ' + err);
         });
         await connection.connect();

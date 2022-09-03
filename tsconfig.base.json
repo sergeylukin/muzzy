@@ -26,7 +26,7 @@
         "libs/front/feature-upload-zone/src/index.ts"
       ],
       "@muzzy/redis": ["libs/shared/redis/src/index.ts"],
-      "@muzzy/shared/environments": ["libs/shared/environments/src/index.ts"]
+      "@muzzy/environments": ["libs/shared/environments/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

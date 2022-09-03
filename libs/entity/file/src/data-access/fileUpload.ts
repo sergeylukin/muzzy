@@ -1,5 +1,5 @@
 import { IFileUploadApiResponse, FILE_UPLOAD_API_URL } from '../';
-import { environment } from '@muzzy/shared/environments';
+import { environment } from '@muzzy/environments';
 
 export const fileUpload = (file: File): Promise<IFileUploadApiResponse> => {
   return fetch(environment.api.hostport + FILE_UPLOAD_API_URL, {

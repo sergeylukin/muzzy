@@ -2,7 +2,7 @@ import * as express from 'express';
 import { redis } from '@muzzy/redis';
 import * as bodyParser from 'body-parser';
 
-import { environment } from '@muzzy/shared/environments';
+import { environment } from '@muzzy/environments';
 import { IFileUploadApiResponse } from '@muzzy/file';
 
 const app = express();

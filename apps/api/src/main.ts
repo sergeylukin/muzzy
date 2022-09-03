@@ -8,7 +8,7 @@ import * as cors from 'cors';
 
 import { router as fileRouter } from './app/routers/file';
 import { FILE_UPLOAD_API_URL } from '@muzzy/file';
-import { environment } from '@muzzy/shared/environments';
+import { environment } from '@muzzy/environments';
 
 const app = express();
 
