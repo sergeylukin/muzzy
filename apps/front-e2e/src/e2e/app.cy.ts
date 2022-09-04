@@ -4,12 +4,12 @@ import {
   getShareableURLContainer,
   getUploadButton,
 } from '../support/app.po';
-import { FILE_UPLOAD_API_URL } from '@muzzy/file';
+import { FILE_API_BASE_URL } from '@muzzy/file';
 
 describe('front', () => {
   const fileId = +new Date();
   beforeEach(() => {
-    cy.intercept(FILE_UPLOAD_API_URL, {
+    cy.intercept(FILE_API_BASE_URL, {
       hostname: 'localhost',
       port: 3333,
       statusCode: 200,

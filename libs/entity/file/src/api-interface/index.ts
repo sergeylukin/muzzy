@@ -2,4 +2,4 @@ export interface IFileUploadApiResponse {
   url: string;
 }
 
-export const FILE_UPLOAD_API_URL = '/v1/file';
+export const FILE_API_BASE_URL = '/v1/file';

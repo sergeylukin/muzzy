@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 
 import { router as fileRouter } from './app/routers/file';
-import { FILE_UPLOAD_API_URL } from '@muzzy/file';
+import { FILE_API_BASE_URL } from '@muzzy/file';
 import { environment } from '@muzzy/environments';
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(
   })
 );
 
-app.use(FILE_UPLOAD_API_URL, fileRouter);
+app.use(FILE_API_BASE_URL, fileRouter);
 app.use('/health', (_req, res) => {
   res.send({ message: 'its working' });
 });
