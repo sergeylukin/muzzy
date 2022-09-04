@@ -17,6 +17,12 @@ services:
         value: production
       - key: NX_2ND_LEVEL_DOMAIN
         value: sergeylukin.com
+      - key: NX_PREVIEW_DOMAIN
+        value: onrender.com
+      - key: NX_SERVICE_NAME
+        value: muzzy-api
+      - key: NX_MAIN_BRANCH_API_SERVICE_NAME
+        value: muzzy-api
       - key: REDIS_URL
         fromService:
           type: redis
@@ -49,6 +55,12 @@ services:
         value: 14.17.5
       - key: NX_2ND_LEVEL_DOMAIN
         value: sergeylukin.com
+      - key: NX_PREVIEW_DOMAIN
+        value: onrender.com
+      - key: NX_SERVICE_NAME
+        value: muzzy
+      - key: NX_MAIN_BRANCH_API_SERVICE_NAME
+        value: muzzy-api
       - key: NX_API_HOST
         fromService:
           type: web
