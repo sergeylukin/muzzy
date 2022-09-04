@@ -29,9 +29,9 @@ const client = (uri: string) => {
       await this.connect();
       return await connection.get(key);
     },
-    set: async function (key: string, value: string) {
+    set: async function (key: string, value: string, modifiers) {
       await this.connect();
-      return await connection.set(key, value);
+      return await connection.set(key, value, modifiers);
     },
     disconnect: () => console.log('disconnecting'),
   });

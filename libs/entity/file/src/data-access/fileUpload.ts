@@ -4,8 +4,11 @@ import {
   IFileUploadApiResponse,
 } from '../';
 
-export const fileUpload = (file: File): Promise<IFileUploadApiResponse> => {
-  return fetch(fileApiBaseUrl, {
+export const fileUpload = (
+  file: File,
+  expiry: number
+): Promise<IFileUploadApiResponse> => {
+  return fetch(`${fileApiBaseUrl}?expiry=${expiry}`, {
     method: 'POST',
     body: file,
   })

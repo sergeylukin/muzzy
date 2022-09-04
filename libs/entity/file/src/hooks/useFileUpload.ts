@@ -29,8 +29,9 @@ export function useFileUpload() {
   }, [dropzoneRef.current, inputRef.current]);
 
   const onUpload = () => {
+    const expiry = 20;
     if (selectedFile)
-      fileUpload(selectedFile).then((res) => setApiResponse(res));
+      fileUpload(selectedFile, expiry).then((res) => setApiResponse(res));
   };
 
   return {
