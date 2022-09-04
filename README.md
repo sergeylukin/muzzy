@@ -4,7 +4,15 @@
 
 muzzy (combination of "meme" and "buzzy") - your favorite meme sharing web app.
 
-## how to contribute
+## live demo
+
+This repo is auto-synced with k8s cluster hosted at and abstracted by [Render](https://render.com/)
+(see [render.yaml](./render.yaml) for complete production/preview
+infrastructure configuration) available at:
+
+https://muzzy.sergeylukin.com/
+
+## quick start
 
 Start up redis
 
