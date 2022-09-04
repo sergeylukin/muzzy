@@ -1,16 +1,24 @@
-import { IFileUploadApiResponse, FILE_UPLOAD_API_URL } from '../';
-import { environment } from '@muzzy/environments';
+import {
+  fileApiBaseUrl,
+  getFileApiUrlWithId,
+  IFileUploadApiResponse,
+} from '../';
 
 export const fileUpload = (file: File): Promise<IFileUploadApiResponse> => {
-  return fetch(environment.api.hostport + FILE_UPLOAD_API_URL, {
-    // Your POST endpoint
+  return fetch(fileApiBaseUrl, {
     method: 'POST',
-    body: file, // This is your file object
+    body: file,
   })
-    .then(
-      (response) => response.json() // if the response is a JSON object
-    )
-    .catch(
-      (error) => console.log(error) // Handle the error response object
-    );
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 };
+
+export const find = async (id: string | undefined) =>
+  await fetch(`${getFileApiUrlWithId(id)}`)
+    .then((response) => response.blob())
+    .then((imageBlob) => {
+      const imageObjectURL = URL.createObjectURL(imageBlob);
+      console.log(imageObjectURL);
+      return imageObjectURL;
+    })
+    .catch((error) => console.log(error));

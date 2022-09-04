@@ -1,18 +1,21 @@
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 
-/* eslint-disable-next-line */
-export interface FrontFeatureFileViewerProps {}
+import { getFileApiUrlWithId } from '@muzzy/file';
 
 const StyledFrontFeatureFileViewer = styled.div`
   color: pink;
 `;
 
-export function FrontFeatureFileViewer(props: FrontFeatureFileViewerProps) {
-  const params = useParams();
+export function FrontFeatureFileViewer() {
+  const { id } = useParams();
+  const fileURL = getFileApiUrlWithId(id);
+  const shareableURL = window.location.href;
+
   return (
     <StyledFrontFeatureFileViewer>
-      Hey! you're viewing web version of meme with ID "{params['id']}"
+      <h2>{shareableURL}</h2>
+      <img src={fileURL} alt="" />
     </StyledFrontFeatureFileViewer>
   );
 }
