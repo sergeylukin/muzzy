@@ -19,7 +19,10 @@ app.post(
   bodyParser.raw({ type: ['image/jpeg', 'image/png'], limit: '50mb' }),
   async (req, res) => {
     const id = Number(new Date());
-    await redis.set(id.toString(), req.body.toString('hex'));
+    const expiry = req.query?.expiry;
+    await redis.set(id.toString(), req.body.toString('hex'), {
+      EX: expiry,
+    });
     res.send({
       url: getFileApiUrlWithId(String(id)),
     } as IFileUploadApiResponse);
