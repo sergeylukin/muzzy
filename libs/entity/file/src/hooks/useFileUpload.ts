@@ -4,11 +4,28 @@ import { fileUpload, IFileUploadApiResponse } from '../';
 
 export function useFileUpload() {
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const dropzoneRef = React.useRef<HTMLInputElement>(null);
+  const dropzoneRef = React.useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [apiResponse, setApiResponse] = React.useState<IFileUploadApiResponse>({
     url: '',
   });
+  const [selectedExpiryValue, setSelectedExpiryValue] = React.useState('5s');
+  const expiryOptions = [
+    {
+      value: '5s',
+      text: '5s',
+    },
+    {
+      value: '1m',
+      text: '1m',
+    },
+  ];
+
+  const onChangeExpiry = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const newValue: string = (e.target as HTMLSelectElement).value;
+    setSelectedExpiryValue(newValue);
+  };
 
   // @ts-ignore
   const grabFile = (event) => {
@@ -28,7 +45,8 @@ export function useFileUpload() {
     document.addEventListener('change', grabFile, false);
   }, [dropzoneRef.current, inputRef.current]);
 
-  const onUpload = () => {
+  const onUpload = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     const expiry = 20;
     if (selectedFile)
       fileUpload(selectedFile, expiry).then((res) => setApiResponse(res));
@@ -39,6 +57,9 @@ export function useFileUpload() {
     dropzoneRef,
     onUpload,
     apiResponse,
+    selectedExpiryValue,
+    expiryOptions,
+    onChangeExpiry,
   };
 }
 

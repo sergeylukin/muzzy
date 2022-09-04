@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@muzzy/environments": ["libs/shared/environments/src/index.ts"],
       "@muzzy/file": ["libs/entity/file/src/index.ts"],
       "@muzzy/file/data-access": ["libs/entity/file/data-access/src/index.ts"],
       "@muzzy/file/hooks": ["libs/entity/file/hooks/src/index.ts"],
@@ -26,7 +27,7 @@
         "libs/front/feature-upload-zone/src/index.ts"
       ],
       "@muzzy/redis": ["libs/shared/redis/src/index.ts"],
-      "@muzzy/environments": ["libs/shared/environments/src/index.ts"]
+      "@muzzy/ui/upload": ["libs/shared/ui/upload/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
