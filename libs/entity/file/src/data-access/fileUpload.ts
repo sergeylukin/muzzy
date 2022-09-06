@@ -4,7 +4,7 @@ import {
   IFileUploadApiResponse,
 } from '../';
 
-export const fileUpload = (
+export const fileUpload = async (
   file: File,
   expiry: number
 ): Promise<IFileUploadApiResponse> => {

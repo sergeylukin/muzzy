@@ -6,6 +6,8 @@ import { getFileApiUrlWithId, IFileUploadApiResponse } from '@muzzy/file';
 
 const app = express();
 
+const ONE_HOUR_IN_SECONDS = 3600;
+
 app.get('/:fileId', async (req, res) => {
   const id = req.params.fileId;
   const value = (await redis.get(String(id))) || '';
@@ -18,11 +20,15 @@ app.post(
   '/',
   bodyParser.raw({ type: ['image/jpeg', 'image/png'], limit: '50mb' }),
   async (req, res) => {
-    const id = Number(new Date());
-    const expiry = req.query?.expiry;
-    await redis.set(id.toString(), req.body.toString('hex'), {
-      EX: expiry,
-    });
+    const id = +new Date();
+    const expiry = Number(req.query?.expiry);
+
+    await redis.setEx(
+      id.toString(),
+      isNaN(expiry) ? ONE_HOUR_IN_SECONDS : expiry,
+      req.body.toString('hex')
+    );
+
     res.send({
       url: getFileApiUrlWithId(String(id)),
     } as IFileUploadApiResponse);

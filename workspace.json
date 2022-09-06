@@ -9,6 +9,8 @@
     "front-feature-file-viewer": "libs/front/feature-file-viewer",
     "front-feature-upload-zone": "libs/front/feature-upload-zone",
     "shared-environments": "libs/shared/environments",
-    "shared-redis": "libs/shared/redis"
+    "shared-redis": "libs/shared/redis",
+    "shared-ui-upload": "libs/shared/ui/upload",
+    "shared-utils-duration": "libs/shared/utils/duration"
   }
 }
