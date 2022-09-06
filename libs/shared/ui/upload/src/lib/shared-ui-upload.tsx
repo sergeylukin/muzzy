@@ -18,11 +18,6 @@ type IExpiry = {
   text: string;
 };
 
-export interface IUploadChildrenProps {
-  inputRef: React.RefObject<HTMLInputElement>;
-  onUpload: (e: React.SyntheticEvent) => void;
-}
-
 export function useUploadContext() {
   return React.useContext(UploadContext) as IUploadContext;
 }
@@ -31,7 +26,7 @@ export const Upload = ({
   children,
   onUploadComplete,
 }: {
-  children: React.FC<IUploadChildrenProps>;
+  children: React.ReactNode;
   onUploadComplete: (id: string) => void;
 }) => {
   const {
@@ -62,12 +57,7 @@ export const Upload = ({
       }}
     >
       <div ref={dropzoneRef}>
-        <form onSubmit={onUpload}>
-          {children({
-            inputRef,
-            onUpload,
-          })}
-        </form>
+        <form onSubmit={onUpload}>{children}</form>
       </div>
     </UploadContext.Provider>
   );

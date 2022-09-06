@@ -1,33 +1,27 @@
 import { useNavigate } from 'react-router-dom';
-import { Upload, IUploadChildrenProps } from '@muzzy/ui/upload';
+import { Upload } from '@muzzy/ui/upload';
 
 export const FrontFeatureUploadZone = () => {
   const navigate = useNavigate();
 
-  const onUploadComplete = (id: string) => {
-    const redirectPattern = '/p/:id';
-    const postURL = redirectPattern.replace(/:id/g, id);
-    navigate(postURL);
-  };
-
   return (
-    <Upload onUploadComplete={onUploadComplete}>
-      {({ onUpload }: IUploadChildrenProps) => (
-        <>
-          <h1>upload a meme</h1>
-          <Upload.ExpirySelect options={['5s', '5m', '1h', '1d', '1w']}>
-            {({ option, key }) => (
-              <Upload.ExpiryOption option={option} key={key}>
-                {option.text}
-              </Upload.ExpiryOption>
-            )}
-          </Upload.ExpirySelect>
-          <Upload.FileInput />
-          <button id="muzzy-upload-button" type="submit" onClick={onUpload}>
-            Upload!
-          </button>
-        </>
-      )}
+    <Upload
+      onUploadComplete={(id: string) => {
+        navigate(`/p/${id}`);
+      }}
+    >
+      <h1>upload a meme</h1>
+      <Upload.ExpirySelect options={['5s', '5m', '1h', '1d', '1w']}>
+        {({ option, key }) => (
+          <Upload.ExpiryOption option={option} key={key}>
+            {option.text}
+          </Upload.ExpiryOption>
+        )}
+      </Upload.ExpirySelect>
+      <Upload.FileInput />
+      <button id="muzzy-upload-button" type="submit">
+        Upload!
+      </button>
     </Upload>
   );
 };
