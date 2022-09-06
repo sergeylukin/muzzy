@@ -87,6 +87,7 @@ const ExpirySelect = <T extends React.ElementType = 'select'>({
     text: value,
   }));
   const [expiry, setExpiry] = React.useState(options[0]);
+
   const onChange = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const newValue: string = (e.target as HTMLSelectElement).value;
@@ -94,6 +95,11 @@ const ExpirySelect = <T extends React.ElementType = 'select'>({
     setExpiry(newValue);
     setSelectedExpiryInSeconds(newValueInSeconds);
   };
+
+  React.useEffect(() => {
+    setSelectedExpiryInSeconds(duration.toSeconds(options[0]));
+  }, [options, setSelectedExpiryInSeconds]);
+
   return (
     <Component value={expiry} onChange={onChange}>
       {expiryOptions.map((option, key) => children({ option, key }))}
