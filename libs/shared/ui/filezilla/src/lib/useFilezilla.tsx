@@ -1,18 +1,13 @@
 import * as React from 'react';
 
-import { fileUpload, IFileUploadApiResponse } from '../';
-
-export function useFileUpload({
+export function useFilezilla({
   defaultExpiryInSeconds = 60,
 }: {
   defaultExpiryInSeconds: number;
 }) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const dropzoneRef = React.useRef<HTMLInputElement | null>(null);
-  const [selectedFile, setSelectedFile] = React.useState<File>();
-  const [apiResponse, setApiResponse] = React.useState<IFileUploadApiResponse>({
-    url: '',
-  });
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [selectedExpiryInSeconds, setSelectedExpiryInSeconds] = React.useState(
     defaultExpiryInSeconds
   );
@@ -46,21 +41,12 @@ export function useFileUpload({
       },
       false
     );
-  }, [dropzoneRef.current, inputRef.current]);
-
-  const onUpload = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    if (selectedFile)
-      fileUpload(selectedFile, selectedExpiryInSeconds).then((res) =>
-        setApiResponse(res)
-      );
-  };
+  }, []);
 
   return {
     inputRef,
     dropzoneRef,
-    onUpload,
-    apiResponse,
+    selectedFile,
     selectedExpiryInSeconds,
     setSelectedExpiryInSeconds,
   };
