@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useFileUpload, IFileUploadApiResponse } from '@muzzy/file';
+import { duration } from '@muzzy/shared/utils/duration';
 
 interface IUploadContext {
   apiResponse: IFileUploadApiResponse;
   inputRef: React.RefObject<HTMLInputElement>;
   dropzoneRef: React.RefObject<HTMLDivElement> | null;
-  selectedExpiryValue: string;
-  expiryOptions: IExpiry[];
-  onChangeExpiry: (e: React.SyntheticEvent) => void;
+  selectedExpiryInSeconds: number;
+  setSelectedExpiryInSeconds: (expiry: number) => void;
   onUpload: (e: React.SyntheticEvent) => void;
 }
 
@@ -38,11 +38,10 @@ export const Upload = ({
     apiResponse,
     inputRef,
     dropzoneRef,
-    selectedExpiryValue,
-    expiryOptions,
-    onChangeExpiry,
+    selectedExpiryInSeconds,
+    setSelectedExpiryInSeconds,
     onUpload,
-  } = useFileUpload();
+  } = useFileUpload({ defaultExpiryInSeconds: 60 });
 
   React.useEffect(() => {
     if (apiResponse?.url) {
@@ -57,9 +56,8 @@ export const Upload = ({
         apiResponse,
         inputRef,
         dropzoneRef,
-        selectedExpiryValue,
-        expiryOptions,
-        onChangeExpiry,
+        selectedExpiryInSeconds,
+        setSelectedExpiryInSeconds,
         onUpload,
       }}
     >
@@ -80,17 +78,36 @@ export interface ISelectChildrenProps {
   key: number;
 }
 
-const ExpirySelect = ({
-  children,
-}: {
+interface ExpirySelectProps<T extends React.ElementType> {
+  as?: T;
   children: React.FC<ISelectChildrenProps>;
-}) => {
-  const { selectedExpiryValue, onChangeExpiry, expiryOptions } =
-    useUploadContext();
+  options: string[];
+}
+
+const ExpirySelect = <T extends React.ElementType = 'select'>({
+  as,
+  children,
+  options,
+}: ExpirySelectProps<T> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof ExpirySelectProps<T>>) => {
+  const Component = as || 'select';
+  const { setSelectedExpiryInSeconds } = useUploadContext();
+  const expiryOptions = options.map((value) => ({
+    value,
+    text: value,
+  }));
+  const [expiry, setExpiry] = React.useState(options[0]);
+  const onChange = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const newValue: string = (e.target as HTMLSelectElement).value;
+    const newValueInSeconds = duration.toSeconds(newValue);
+    setExpiry(newValue);
+    setSelectedExpiryInSeconds(newValueInSeconds);
+  };
   return (
-    <select value={selectedExpiryValue} onChange={onChangeExpiry}>
+    <Component value={expiry} onChange={onChange}>
       {expiryOptions.map((option, key) => children({ option, key }))}
-    </select>
+    </Component>
   );
 };
 const ExpiryOption = ({

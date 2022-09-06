@@ -27,6 +27,9 @@
         "libs/front/feature-upload-zone/src/index.ts"
       ],
       "@muzzy/redis": ["libs/shared/redis/src/index.ts"],
+      "@muzzy/shared/utils/duration": [
+        "libs/shared/utils/duration/src/index.ts"
+      ],
       "@muzzy/ui/upload": ["libs/shared/ui/upload/src/index.ts"]
     }
   },

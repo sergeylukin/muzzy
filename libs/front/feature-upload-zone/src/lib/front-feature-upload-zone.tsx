@@ -15,7 +15,7 @@ export const FrontFeatureUploadZone = () => {
       {({ onUpload }: IUploadChildrenProps) => (
         <>
           <h1>upload a meme</h1>
-          <Upload.ExpirySelect>
+          <Upload.ExpirySelect options={['5s', '5m', '1h', '1d', '1w']}>
             {({ option, key }) => (
               <Upload.ExpiryOption option={option} key={key}>
                 {option.text}
