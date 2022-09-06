@@ -1,12 +1,14 @@
 import * as React from 'react';
+import { useFileUpload, IFileUploadApiResponse } from '@muzzy/file';
 import { duration } from '@muzzy/shared/utils/duration';
-import { useFilezilla } from './useFilezilla';
 
 interface IUploadContext {
+  apiResponse: IFileUploadApiResponse;
   inputRef: React.RefObject<HTMLInputElement>;
   dropzoneRef: React.RefObject<HTMLDivElement> | null;
   selectedExpiryInSeconds: number;
   setSelectedExpiryInSeconds: (expiry: number) => void;
+  onUpload: (e: React.SyntheticEvent) => void;
 }
 
 const UploadContext = React.createContext<IUploadContext | null>(null);
@@ -22,37 +24,40 @@ export function useUploadContext() {
 
 export const Filezilla = ({
   children,
-  uploader,
+  onUploadComplete,
 }: {
   children: React.ReactNode;
-  uploader: (file: File | null, expiry: number) => void;
+  onUploadComplete: (id: string) => void;
 }) => {
   const {
+    apiResponse,
     inputRef,
     dropzoneRef,
-    selectedFile,
     selectedExpiryInSeconds,
     setSelectedExpiryInSeconds,
-  } = useFilezilla({ defaultExpiryInSeconds: 60 });
+    onUpload,
+  } = useFileUpload({ defaultExpiryInSeconds: 60 });
+
+  React.useEffect(() => {
+    if (apiResponse?.url) {
+      const id = apiResponse.url.split('/').at(-1) || '';
+      onUploadComplete(id);
+    }
+  }, [apiResponse, onUploadComplete]);
 
   return (
     <UploadContext.Provider
       value={{
+        apiResponse,
         inputRef,
         dropzoneRef,
         selectedExpiryInSeconds,
         setSelectedExpiryInSeconds,
+        onUpload,
       }}
     >
       <div ref={dropzoneRef}>
-        <form
-          onSubmit={(e: React.SyntheticEvent) => {
-            e.preventDefault();
-            uploader(selectedFile, selectedExpiryInSeconds);
-          }}
-        >
-          {children}
-        </form>
+        <form onSubmit={onUpload}>{children}</form>
       </div>
     </UploadContext.Provider>
   );
@@ -82,7 +87,6 @@ const ExpirySelect = <T extends React.ElementType = 'select'>({
     text: value,
   }));
   const [expiry, setExpiry] = React.useState(options[0]);
-
   const onChange = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const newValue: string = (e.target as HTMLSelectElement).value;
@@ -92,7 +96,9 @@ const ExpirySelect = <T extends React.ElementType = 'select'>({
   };
 
   React.useEffect(() => {
-    setSelectedExpiryInSeconds(duration.toSeconds(options[0]));
+    const dur = duration.toSeconds(options[0]);
+    console.log('setting dur to', dur);
+    setSelectedExpiryInSeconds(dur);
   }, [options, setSelectedExpiryInSeconds]);
 
   return (
