@@ -22,7 +22,7 @@ export function useUploadContext() {
   return React.useContext(UploadContext) as IUploadContext;
 }
 
-export const Upload = ({
+export const Filezilla = ({
   children,
   onUploadComplete,
 }: {
@@ -115,6 +115,6 @@ const FileInput = () => {
   return <input type="file" ref={inputRef} />;
 };
 
-Upload.ExpirySelect = ExpirySelect;
-Upload.ExpiryOption = ExpiryOption;
-Upload.FileInput = FileInput;
+Filezilla.ExpirySelect = ExpirySelect;
+Filezilla.ExpiryOption = ExpiryOption;
+Filezilla.FileInput = FileInput;

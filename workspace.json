@@ -10,7 +10,7 @@
     "front-feature-upload-zone": "libs/front/feature-upload-zone",
     "shared-environments": "libs/shared/environments",
     "shared-redis": "libs/shared/redis",
-    "shared-ui-upload": "libs/shared/ui/upload",
+    "shared-ui-filezilla": "libs/shared/ui/filezilla",
     "shared-utils-duration": "libs/shared/utils/duration"
   }
 }

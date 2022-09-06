@@ -30,7 +30,7 @@
       "@muzzy/shared/utils/duration": [
         "libs/shared/utils/duration/src/index.ts"
       ],
-      "@muzzy/ui/upload": ["libs/shared/ui/upload/src/index.ts"]
+      "@muzzy/ui/filezilla": ["libs/shared/ui/filezilla/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
